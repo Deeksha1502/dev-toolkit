@@ -1,13 +1,13 @@
 <div class="p-4 bg-green-100 rounded-lg shadow">
     <h2 class="text-xl font-bold mb-2">🌐 Dev Links</h2>
-    <input [(ngModel)]="label" placeholder="Label (e.g. MDN)" class="p-2 border rounded w-full mb-2" />
-    <input [(ngModel)]="url" placeholder="URL (e.g. https://developer.mozilla.org)" class="p-2 border rounded w-full mb-2" />
+    <input [(ngModel)]="label" (keydown)="handleKeyDown($event)" placeholder="Label (e.g. MDN)" class="p-2 border rounded w-full mb-2" />
+    <input [(ngModel)]="url" (keydown) = "handleKeyDown($event)" placeholder="URL (e.g. https://developer.mozilla.org)" class="p-2 border rounded w-full mb-2" />
     <button (click)="addLink()" class="bg-green-600 text-white px-4 py-1 rounded">Add</button>
   
     <ul class="mt-4 list-disc pl-5">
       <li *ngFor="let link of links; let i = index" class="mb-1">
-        <a [href]="link.url" target="_blank" class="text-blue-700 underline">{{ link.label }}</a>
-        <button (click)="deleteLink(i)" class="text-red-500 ml-2">Delete</button>
+        <a [href]="link.url" target="_blank" class="text-black-900 underline">{{ link.label }}</a>
+        <button (click)="deleteLink(i)" class="text-gray-800 ml-2 bg-red-300 rounded-lg font-medium p-2">Delete</button>
       </li>
     </ul>
   </div>
