@@ -27,4 +27,14 @@ export class CommandsComponent implements OnInit {
     this.commands.splice(index, 1);
     this.storage.setItem('commands', this.commands);
   }
+  handleKeyDown(event: KeyboardEvent)
+  {
+    if(event.key === 'Enter')
+    {
+      if(event.key === 'Enter')
+      {
+        this.addCommand()
+      }
+    }
+  }
 }

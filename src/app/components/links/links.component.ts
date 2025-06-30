@@ -29,4 +29,12 @@ export class LinksComponent implements OnInit {
     this.links.splice(index, 1);
     this.storage.setItem('links', this.links);
   }
+
+  handleKeyDown(event: KeyboardEvent)
+  {
+    if(event.key === 'Enter')
+    {
+    this.addLink();
+    }
+  }
 }

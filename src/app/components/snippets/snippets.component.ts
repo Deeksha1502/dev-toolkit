@@ -27,4 +27,12 @@ export class SnippetsComponent implements OnInit {
     this.snippets.splice(index, 1);
     this.storage.setItem('snippets', this.snippets);
   }
+  handleKeyDown(event: KeyboardEvent)
+  {
+    if(event.key === 'Enter')
+    {
+      this.addSnippet();
+    }
+  }
+
 }

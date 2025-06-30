@@ -1,6 +1,6 @@
 <div class="p-4 bg-gray-100 rounded-lg shadow">
     <h2 class="text-xl font-bold mb-2">Code Snippets</h2>
-    <input [(ngModel)]="newSnippet" placeholder="Enter snippet" class="p-2 border rounded w-full mb-2" />
+    <input [(ngModel)]="newSnippet" placeholder="Enter snippet" (keydown)="handleKeyDown($event)"class="p-2 border rounded w-full mb-2" />
     <button (click)="addSnippet()" class="bg-blue-500 text-white px-4 py-1 rounded">Add</button>
   
     <ul class="mt-4 list-disc pl-5">
