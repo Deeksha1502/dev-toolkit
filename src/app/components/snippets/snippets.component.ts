@@ -8,6 +8,7 @@ import { StorageService } from '../../services/storage.service';
 export class SnippetsComponent implements OnInit {
   snippets: string[] = [];
   newSnippet: string = '';
+  showError: boolean = false;
 
   constructor(private storage: StorageService) {}
 
@@ -20,7 +21,14 @@ export class SnippetsComponent implements OnInit {
       this.snippets.push(this.newSnippet.trim());
       this.storage.setItem('snippets', this.snippets);
       this.newSnippet = '';
+      this.showError = false;
+
     }
+    else
+    {
+      this.showError = true;
+    }
+
   }
 
   deleteSnippet(index: number) {
@@ -32,6 +40,12 @@ export class SnippetsComponent implements OnInit {
     if(event.key === 'Enter')
     {
       this.addSnippet();
+    }
+  }
+  onInputChange(){
+    if(this.showError)
+    {
+      this.showError = false;
     }
   }
 

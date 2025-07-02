@@ -8,6 +8,7 @@ import { StorageService } from '../../services/storage.service';
 export class CommandsComponent implements OnInit {
   commands: string[] = [];
   newCommand: string = '';
+  showError: boolean = false;
 
   constructor(private storage: StorageService) {}
 
@@ -20,6 +21,10 @@ export class CommandsComponent implements OnInit {
       this.commands.push(this.newCommand.trim());
       this.storage.setItem('commands', this.commands);
       this.newCommand = '';
+      this.showError = false;
+    }
+    else{
+      this.showError = true;
     }
   }
 
@@ -31,10 +36,16 @@ export class CommandsComponent implements OnInit {
   {
     if(event.key === 'Enter')
     {
-      if(event.key === 'Enter')
-      {
+     
         this.addCommand()
-      }
+      
     }
   }
+  onInputChange(){
+    if(this.showError)
+    {
+      this.showError = false;
+    }
+  }
+
 }

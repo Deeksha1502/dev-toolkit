@@ -1,13 +1,29 @@
 <div class="p-4 bg-green-100 rounded-lg shadow">
     <h2 class="text-xl font-bold mb-2">🌐 Dev Links</h2>
-    <input [(ngModel)]="label" (keydown)="handleKeyDown($event)" placeholder="Label (e.g. MDN)" class="p-2 border rounded w-full mb-2" />
-    <input [(ngModel)]="url" (keydown) = "handleKeyDown($event)" placeholder="URL (e.g. https://developer.mozilla.org)" class="p-2 border rounded w-full mb-2" />
-    <button (click)="addLink()" class="bg-green-600 text-white px-4 py-1 rounded">Add</button>
+    <input [(ngModel)]="label"
+     (keydown)="handleKeyDown($event)" 
+     placeholder="Label (e.g. MDN)" 
+     class="p-2 border rounded w-full mb-2" 
+     [ngClass]="{'border-red-500':showLabelError}" 
+     (input)="onLabelInputChange()"/>
+    <div *ngIf="showLabelError" class = "text-red-500 text-sm mb-2">Please enter a Label!</div>
+    
+    <input [(ngModel)]="url" 
+    (keydown) = "handleKeyDown($event)" 
+    placeholder="URL (e.g. https://developer.mozilla.org)" 
+    class="p-2 border rounded w-full mb-2" 
+    [ngClass]="{'border-red-500': showUrlError}" 
+    (input)=" onUrlInputChange()"
+  
+     />
+    <div *ngIf="showUrlError" class = "text-red-500 text-sm mb-2">Please enter URL!</div>
+    
+    <button (click)="addLink()" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add</button>
   
     <ul class="mt-4 list-disc pl-5">
       <li *ngFor="let link of links; let i = index" class="mb-1">
         <a [href]="link.url" target="_blank" class="text-black-900 underline">{{ link.label }}</a>
-        <button (click)="deleteLink(i)" class="text-gray-800 ml-2 bg-red-300 rounded-lg font-medium p-2">Delete</button>
+        <button (click)="deleteLink(i)" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 ml-2">Delete</button>
       </li>
     </ul>
   </div>

@@ -9,6 +9,8 @@ export class LinksComponent implements OnInit {
   links: { label: string, url: string }[] = [];
   label: string = '';
   url: string = '';
+  showUrlError: boolean = false;
+  showLabelError: boolean = false;
 
   constructor(private storage: StorageService) {}
 
@@ -17,7 +19,13 @@ export class LinksComponent implements OnInit {
   }
 
   addLink() {
-    if (this.label.trim() && this.url.trim()) {
+    const labelValid = this.label.trim() !== '';
+    const urlValid = this.url.trim() !== '';
+    
+    this.showLabelError = !labelValid;
+    this.showUrlError = !urlValid;
+    
+    if (labelValid && urlValid) {
       this.links.push({ label: this.label.trim(), url: this.url.trim() });
       this.storage.setItem('links', this.links);
       this.label = '';
@@ -36,5 +44,12 @@ export class LinksComponent implements OnInit {
     {
     this.addLink();
     }
+  }
+  onLabelInputChange() {
+    this.showLabelError = false;
+  }
+
+  onUrlInputChange() {
+    this.showUrlError = false;
   }
 }
